@@ -41,7 +41,7 @@ yarn-error.log*
 *.exe
 *.dll
 *.bat
-*.ps1
+# *.ps1
 
 # Mac
 *.app
