@@ -54,9 +54,9 @@ window.typoraLite = (function() {
       const div = document.createElement('div');
       div.className = 'preview-area';
       if (text.trim() === '') {
-        div.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;min-height:100vh;width:100vw;">
-          <span style="color:#888;opacity:0.7;font-size:1.15em;text-align:center;">Press <b>Shift&nbsp;+&nbsp;/</b> to open the help popup</span>
-        </div>`;
+                 div.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;min-height:100vh;width:100vw;">
+           <span style="color:#888;opacity:0.4;font-size:1.15em;text-align:center;">Press <b>Shift&nbsp;+&nbsp;/</b> to open the help popup</span>
+         </div>`;
              } else {
          div.style.padding = '0'; /* Remove padding to avoid extra space */
          div.style.boxSizing = 'border-box';
