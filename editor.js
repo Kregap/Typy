@@ -22,9 +22,9 @@ window.typoraLite = (function() {
       const textarea = document.createElement('textarea');
       textarea.value = text;
       textarea.className = 'edit-area';
-      textarea.style.width = '100%';
-      textarea.style.height = '100vh';
-      textarea.style.fontSize = globalFontSize + 'em';
+             textarea.style.width = '100%';
+       textarea.style.height = '100vh';
+       textarea.style.fontSize = globalFontSize + 'em';
       textarea.addEventListener('input', (e) => {
         text = textarea.value;
       });
@@ -57,14 +57,35 @@ window.typoraLite = (function() {
         div.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;min-height:100vh;width:100vw;">
           <span style="color:#888;opacity:0.7;font-size:1.15em;text-align:center;">Press <b>Shift&nbsp;+&nbsp;/</b> to open the help popup</span>
         </div>`;
-      } else {
-        div.style.display = 'flex';
-        div.style.flexDirection = 'column';
-        div.style.justifyContent = 'center';
-        div.style.alignItems = 'center';
-        div.style.minHeight = '100vh';
-        div.innerHTML = `<div style="width:100%;max-width:900px;">${marked.parse(text)}</div>`;
-      }
+             } else {
+         div.style.padding = '0'; /* Remove padding to avoid extra space */
+         div.style.boxSizing = 'border-box';
+         div.style.minHeight = 'auto';
+         
+         // Create the content div first to measure its height
+         const contentDiv = document.createElement('div');
+         contentDiv.style.width = 'fit-content';
+         contentDiv.style.margin = '0 auto';
+         contentDiv.style.padding = '0.5em';
+         contentDiv.innerHTML = marked.parse(text);
+         
+         // Temporarily add to DOM to measure
+         div.appendChild(contentDiv);
+         const contentHeight = contentDiv.offsetHeight;
+         const viewportHeight = window.innerHeight;
+         
+         // Remove the temporary div
+         div.removeChild(contentDiv);
+         
+         // If content is shorter than viewport, center it vertically
+         if (contentHeight < viewportHeight) {
+           div.style.display = 'grid';
+           div.style.placeItems = 'center';
+           div.style.minHeight = '100vh';
+         }
+         
+         div.innerHTML = `<div style="width:fit-content;margin:0 auto;padding:0.5em;">${marked.parse(text)}</div>`;
+       }
       // Add a global mousedown handler to always switch to edit mode on left click
       function globalPreviewToEditHandler(e) {
         if (cursorHidden && e.button === 0 && !e.ctrlKey) {

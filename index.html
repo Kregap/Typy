@@ -27,19 +27,15 @@
         width: 100vw;
         max-width: none;
         margin: 0;
-  padding-left: 0;
+        padding-left: 0;
+        height: 100vh; /* Restore height for proper edit area sizing */
       .preview-area {
-        padding-left: 1em;
-        display: table;
-        margin-left: auto;
-        margin-right: auto;
-        width: auto;
-        min-width: 40vw;
-        max-width: 100vw;
-  line-height: 1.02;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        line-height: 1.02;
       }
-        background: #fff;
-        min-height: 100vh;
+                 background: #fff;
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
@@ -143,6 +139,59 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="editor.js"></script>
     <script>
+    // Configuration options
+    const CONFIG = {
+      showScrollbars: false // Set to true to show scrollbars, false to hide them
+    };
+    
+    // Apply scrollbar visibility based on configuration
+    if (!CONFIG.showScrollbars) {
+      // Hide scrollbars when showScrollbars is false
+      const style = document.createElement('style');
+      style.textContent = `
+        /* Hide scrollbar but keep scroll functionality */
+        html, body {
+          scrollbar-width: none; /* Firefox */
+          -ms-overflow-style: none; /* Internet Explorer 10+ */
+        }
+        
+        html::-webkit-scrollbar, body::-webkit-scrollbar {
+          display: none; /* Chrome, Safari, Opera */
+        }
+        
+        /* Hide scrollbar for preview area specifically */
+        .preview-area {
+          scrollbar-width: none; /* Firefox */
+          -ms-overflow-style: none; /* Internet Explorer 10+ */
+        }
+        
+        .preview-area::-webkit-scrollbar {
+          display: none; /* Chrome, Safari, Opera */
+        }
+        
+        /* Hide scrollbar for workarea and container */
+        #workarea, #container {
+          scrollbar-width: none; /* Firefox */
+          -ms-overflow-style: none; /* Internet Explorer 10+ */
+        }
+        
+        #workarea::-webkit-scrollbar, #container::-webkit-scrollbar {
+          display: none; /* Chrome, Safari, Opera */
+        }
+        
+        /* Hide scrollbar for all elements */
+        * {
+          scrollbar-width: none; /* Firefox */
+          -ms-overflow-style: none; /* Internet Explorer 10+ */
+        }
+        
+        *::-webkit-scrollbar {
+          display: none; /* Chrome, Safari, Opera */
+        }
+      `;
+      document.head.appendChild(style);
+    }
+    
     const workarea = document.getElementById('workarea');
     window.typoraLite.setWorkarea(workarea);
     window.typoraLite.render();
