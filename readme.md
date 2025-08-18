@@ -24,4 +24,5 @@ https://github.com/user-attachments/assets/a1c683cb-3dd0-4806-80bd-c475f3ffad0a
 3. The packaged app will be in the `dist/Typy-win32-x64` folder. Run or distribute `Typy.exe` from there.
 
 - Make sure you have run `npm install` before packaging.
+- You can create a zip from the build with `powershell Compress-Archive -Path dist\Typy-win32-x64\* -DestinationPath dist\Typy-win32-x64.zip -Force`.
 - You can customize the icon and other options using electron-packager flags. See the [electron-packager documentation](https://github.com/electron/electron-packager) for more details.
