@@ -1,6 +1,6 @@
 # Typy
 
-A minimal Markdown editor for Windows (Electron).
+Typy allows to take short notes on your desktop with Markdown for Windows (Electron).
 
 ## How to package Typy as a standalone Windows app
 
