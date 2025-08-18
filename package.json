@@ -1,0 +1,12 @@
+{
+  "name": "typy",
+  "version": "1.0.0",
+  "description": "A minimal Markdown editor for Windows (Electron)",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^30.0.0"
+  }
+}
