@@ -14,7 +14,7 @@ window.typoraLite = (function() {
   let cursorHidden = true; // Start in preview mode
   let workarea;
 
-  let fontSize = 1.1; // em, default font size
+  let globalFontSize = 1.1; // em, global font size for zoom
   function render() {
     workarea.innerHTML = '';
     if (!cursorHidden) {
@@ -24,7 +24,7 @@ window.typoraLite = (function() {
       textarea.className = 'edit-area';
       textarea.style.width = '100%';
       textarea.style.height = '100vh';
-      textarea.style.fontSize = fontSize + 'em';
+      textarea.style.fontSize = globalFontSize + 'em';
       textarea.addEventListener('input', (e) => {
         text = textarea.value;
       });
@@ -38,9 +38,13 @@ window.typoraLite = (function() {
       textarea.addEventListener('wheel', (e) => {
         if (e.ctrlKey) {
           e.preventDefault();
-          if (e.deltaY < 0) fontSize = Math.min(fontSize + 0.1, 3);
-          if (e.deltaY > 0) fontSize = Math.max(fontSize - 0.1, 0.5);
-          textarea.style.fontSize = fontSize + 'em';
+          if (e.deltaY < 0) {
+            globalFontSize = Math.min(globalFontSize + 0.1, 3);
+          }
+          if (e.deltaY > 0) {
+            globalFontSize = Math.max(globalFontSize - 0.1, 0.5);
+          }
+          textarea.style.fontSize = globalFontSize + 'em';
         }
       });
       setTimeout(() => textarea.focus(), 0);
@@ -80,13 +84,17 @@ window.typoraLite = (function() {
       setTimeout(() => {
         if (!cursorHidden) document.removeEventListener('mousedown', globalPreviewToEditHandler);
       }, 0);
-      div.style.fontSize = (fontSize * 0.86) + 'em';
+      div.style.fontSize = (globalFontSize * 0.86) + 'em';
       div.addEventListener('wheel', (e) => {
         if (e.ctrlKey) {
           e.preventDefault();
-          if (e.deltaY < 0) fontSize = Math.min(fontSize + 0.1, 3);
-          if (e.deltaY > 0) fontSize = Math.max(fontSize - 0.1, 0.5);
-          div.style.fontSize = (fontSize * 0.86) + 'em';
+          if (e.deltaY < 0) {
+            globalFontSize = Math.min(globalFontSize + 0.1, 3);
+          }
+          if (e.deltaY > 0) {
+            globalFontSize = Math.max(globalFontSize - 0.1, 0.5);
+          }
+          div.style.fontSize = (globalFontSize * 0.86) + 'em';
         }
       });
       workarea.appendChild(div);
@@ -105,6 +113,10 @@ window.typoraLite = (function() {
   }
   function setText(newText) {
     text = newText;
+    render();
+  }
+  function setGlobalFontSize(newSize) {
+    globalFontSize = newSize;
     render();
   }
   function showCursor() {
@@ -152,6 +164,7 @@ window.typoraLite = (function() {
     focusInput,
     getText,
     setText,
+    setGlobalFontSize,
     showCursor,
     hideCursor,
     handleKeydown,
