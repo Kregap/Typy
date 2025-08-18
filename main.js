@@ -29,9 +29,19 @@ function createWindow() {
 
   // Show popup with about/help message
   ipcMain.on('show-thankyou-popup', () => {
+    // Calculate position to center the popup based on main window
+    const popupWidth = 480;
+    const popupHeight = 520;
+    const [winX, winY] = win.getPosition();
+    const [winWidth, winHeight] = win.getSize();
+    const x = Math.round(winX + (winWidth - popupWidth) / 2);
+    const y = Math.round(winY + (winHeight - popupHeight) / 2);
+    
     let popup = new BrowserWindow({
-      width: 480,
-      height: 420,
+      width: popupWidth,
+      height: popupHeight,
+      x: x,
+      y: y,
       resizable: false,
       minimizable: false,
       maximizable: false,
