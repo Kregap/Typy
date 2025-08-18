@@ -7,16 +7,10 @@ Typy allows to take short notes on your desktop with Markdown for Windows (Elect
 See Typy in action with these demo videos:
 
 ### Demo 1 - Basic Usage
-<video width="100%" controls>
-  <source src="https://github.com/user-attachments/assets/54a9bf71-180c-4c71-9fbf-3259a37c4f1b" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+![Demo 1](https://github.com/user-attachments/assets/54a9bf71-180c-4c71-9fbf-3259a37c4f1b)
 
 ### Demo 2 - Advanced Features
-<video width="100%" controls>
-  <source src="https://github.com/user-attachments/assets/a1c683cb-3dd0-4806-80bd-c475f3ffad0a" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+![Demo 2](https://github.com/user-attachments/assets/a1c683cb-3dd0-4806-80bd-c475f3ffad0a)
 
 ## How to package Typy as a standalone Windows app
 
