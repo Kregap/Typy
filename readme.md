@@ -2,6 +2,8 @@
 
 A minimal Markdown editor for Windows built with Electron.
 
+![Typy Icon](src/assets/icon.svg)
+
 [![CI](https://github.com/kregap/typy/actions/workflows/build.yml/badge.svg)](https://github.com/kregap/typy/actions/workflows/build.yml)
 
 ## Quick Start
@@ -108,7 +110,7 @@ For detailed development setup, tools, and best practices, see [DEVELOPMENT.md](
 2. Run the following command:
 
    ```powershell
-   npx electron-packager . Typy --platform=win32 --arch=x64 --out=dist --overwrite
+   npx electron-packager . Typy --platform=win32 --arch=x64 --out=dist --overwrite --icon=src/assets/icon.ico
    ```
 
 3. The packaged app will be in the `dist/Typy-win32-x64` folder. Run or distribute `Typy.exe` from there.

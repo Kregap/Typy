@@ -49,6 +49,7 @@ function createWindow() {
       autoHideMenuBar: true,
       parent: win,
       modal: true,
+      icon: path.join(__dirname, "..", "assets", "icon.ico"),
       webPreferences: {
         contextIsolation: true,
         nodeIntegration: false,
