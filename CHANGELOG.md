@@ -7,12 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.2] - 2025-08-19
+
 ### Changed
 
 - Minute visual changes
 - App icon was replaced
 
-## [1.0.1] - 2024-01-01
+## [1.0.1] - 2025-08-18
 
 ### Fixed
 
@@ -29,7 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated demo videos in readme
 - Removed demo videos from repository
 
-## [1.0.0] - 2024-01-01
+## [1.0.0] - 2025-08-18
 
 ### Added
 
@@ -51,5 +53,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Version History
 
+- **v1.0.2**: Layout improvements, new icon
 - **v1.0.1**: Layout improvements, scrollbar fixes, and icon enhancements
 - **v1.0.0**: Initial release with basic markdown editing functionality
