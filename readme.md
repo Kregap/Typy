@@ -2,6 +2,8 @@
 
 Typy allows to take short notes on your desktop with Markdown for Windows (Electron).
 
+[![CI](https://github.com/kregap/typy/actions/workflows/ci.yml/badge.svg)](https://github.com/kregap/typy/actions/workflows/ci.yml)
+
 ## Development
 
 For development setup, tools, and best practices, see [DEVELOPMENT.md](./DEVELOPMENT.md).

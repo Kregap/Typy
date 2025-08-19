@@ -140,6 +140,51 @@ Consider adding these checks to your Git hooks for automatic validation:
 npm run check
 ```
 
+### GitHub Actions
+
+The project includes automated CI/CD workflows that run on every PR and push to master:
+
+#### **Quality Checks** (`.github/workflows/ci.yml`)
+
+- Runs linting and formatting checks
+- Ensures code quality standards are met
+- Fails PRs that don't meet quality requirements
+
+#### **Build and Test** (`.github/workflows/build.yml`)
+
+- Runs quality checks first
+- Builds the Electron app on multiple platforms
+- Creates build artifacts for Windows
+- Tests the application startup
+
+#### **Status Badge**
+
+Add this to your README to show CI status:
+
+```markdown
+[![CI](https://github.com/yourusername/typy/actions/workflows/ci.yml/badge.svg)](https://github.com/yourusername/typy/actions/workflows/ci.yml)
+```
+
+**Note**: Replace `yourusername` with your actual GitHub username.
+
+#### **Recommended Branch Protection Rules**
+
+For maximum code quality, consider setting up branch protection rules in GitHub:
+
+1. **Require status checks to pass before merging**
+   - Enable "Require status checks to pass before merging"
+   - Select the CI workflow as a required status check
+
+2. **Require branches to be up to date**
+   - Enable "Require branches to be up to date before merging"
+
+3. **Require pull request reviews**
+   - Enable "Require pull request reviews before merging"
+   - Set minimum number of approving reviews (recommended: 1)
+
+4. **Dismiss stale reviews**
+   - Enable "Dismiss stale pull request approvals when new commits are pushed"
+
 ## 📋 Best Practices
 
 ### Code Style
