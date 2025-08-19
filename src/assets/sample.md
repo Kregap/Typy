@@ -1,11 +1,13 @@
 Paragraph at the beginning of the document.
 
 # Header 1
+
 ## Header 2
+
 ### Header 3
 
 **Bold text**
-*Italic text*
+_Italic text_
 ~~Strikethrough~~
 
 - List item 1
@@ -26,7 +28,7 @@ console.log("Code block");
 > Blockquote
 
 | Table | Example |
-|-------|---------|
+| ----- | ------- |
 | Cell1 | Cell2   |
 
 ---

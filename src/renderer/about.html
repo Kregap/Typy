@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>About Typy</title>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background: #f8f8f8;
+        color: #222;
+        margin: 0;
+        padding: 1.5em;
+        font-size: 1.05em;
+        min-width: 300px;
+        min-height: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      h2 {
+        margin-top: 0;
+        font-size: 1.3em;
+      }
+      ul {
+        margin: 0.5em 0 0 1.2em;
+        padding: 0;
+      }
+      li {
+        margin-bottom: 0.3em;
+      }
+      .shortcuts {
+        margin-top: 1.2em;
+        background: #fff;
+        border-radius: 6px;
+        padding: 0.8em 1em;
+        box-shadow: 0 2px 8px #0001;
+      }
+      code {
+        background: #eee;
+        border-radius: 3px;
+        padding: 0 0.3em;
+        font-size: 0.98em;
+      }
+    </style>
+  </head>
+  <body>
+    <button
+      id="insert-sample"
+      style="
+        float: right;
+        margin-top: 0.2em;
+        margin-bottom: 0.8em;
+        padding: 0.4em 1em;
+        font-size: 1em;
+        border-radius: 5px;
+        border: 1px solid #bbb;
+        background: #f4f4f4;
+        cursor: pointer;
+      "
+    >
+      Insert Sample Markdown
+    </button>
+    <h2 style="margin-top: 0.2em">About Typy</h2>
+    <div>
+      Typy allows to take short notes on your desktop with Markdown.<br />
+      <br />
+      <div class="shortcuts">
+        <b>Available Shortcuts:</b>
+        <ul>
+          <li>
+            <code>Esc</code> or <code>Right Click</code>: Switch to preview mode
+          </li>
+          <li><code>Click</code> (in preview): Return to edit mode</li>
+          <li><code>Ctrl + Right Click</code>: Move window</li>
+          <li><code>Ctrl + Mouse Wheel</code>: Zoom in/out</li>
+          <li>
+            <code>Shift + /</code> (<code>?</code>): Show this help/about popup
+          </li>
+          <li><code>Ctrl + Left Click</code>: Close app</li>
+        </ul>
+      </div>
+    </div>
+    <script>
+      document.getElementById("insert-sample").onclick = function () {
+        if (window.electronAPI && window.electronAPI.insertSampleMarkdown) {
+          window.electronAPI.insertSampleMarkdown();
+        }
+      };
+    </script>
+  </body>
+</html>
