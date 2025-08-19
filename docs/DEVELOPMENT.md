@@ -2,34 +2,14 @@
 
 This document outlines the development setup, tools, and best practices for the Typy Electron project.
 
-## 🛠️ Development Tools
+## 🚀 Quick Start
 
-### Linting & Formatting
-
-The project uses industry-standard tools to maintain code quality and consistency:
-
-#### **ESLint** - JavaScript/Node.js Linting
-
-- **Purpose**: Catches bugs, enforces consistent code style, identifies unused variables and imports
-- **Configuration**: `eslint.config.js` in root directory (modern flat config format)
-- **Features**:
-  - Electron-specific configurations for main and renderer processes
-  - Prettier integration to avoid conflicts
-  - Custom rules for unused variables and code quality
-  - Proper globals configuration for Electron APIs
-
-#### **Prettier** - Code Formatting
-
-- **Purpose**: Automatic code formatting for consistent style across the project
-- **Configuration**: `.prettierrc`
-- **Features**:
-  - Works seamlessly with ESLint
-  - Consistent formatting across all JavaScript files
-  - Configurable formatting rules
+```bash
+npm install
+npm start
+```
 
 ## 📁 Project Structure
-
-The project follows a clean, organized structure:
 
 ```
 Typy/
@@ -49,58 +29,22 @@ Typy/
 │   └── svg-to-ico.ps1     # Icon conversion script
 ├── docs/                  # Documentation
 │   └── DEVELOPMENT.md     # Development guide
+├── .github/               # GitHub Actions files
+│   └── workflows/         # CI/CD workflows
+│       ├── build.yml      # Build and test workflow
+│       └── release.yml    # Release workflow
 ├── eslint.config.js       # ESLint configuration
 ├── .prettierrc            # Prettier configuration
 ├── .prettierignore        # Prettier ignore rules
 ├── .gitattributes         # Line ending configuration
 ├── .husky/                # Git hooks (pre-commit)
+├── CHANGELOG.md           # Version history and changes
 └── dist/                  # Build output
 ```
 
-## 📁 Configuration Files
+## 🛠️ Development Tools
 
-### `eslint.config.js`
-
-Modern ESLint flat configuration with:
-
-- Electron-specific globals for main and renderer processes
-- Prettier integration to avoid formatting conflicts
-- Custom rules for code quality
-- File-specific configurations for different parts of the app
-
-### `.prettierrc`
-
-Prettier configuration with:
-
-- Double quotes for strings
-- Semicolons enabled
-- 2-space indentation
-- 80-character line width
-- No trailing commas
-- Auto line ending detection
-
-### `.prettierignore`
-
-Specifies files to exclude from formatting:
-
-- `node_modules/`
-- `dist/` and `build/` directories
-- Minified files (`*.min.js`, `*.min.css`)
-- Package lock files
-- `.git/`, `.github/`, `.husky/` directories
-
-### `package.json` Updates
-
-Added development scripts:
-
-- `lint`: Check for linting issues
-- `lint:fix`: Fix linting issues automatically
-- `format`: Format all code with Prettier
-- `format:check`: Check if code is properly formatted
-- `check`: Run both lint and format checks
-- `prepare`: Automatically installs Husky git hooks
-
-## 🚀 Available Scripts
+### Available Scripts
 
 ```bash
 # Linting
@@ -115,79 +59,34 @@ npm run format:check  # Check if code is properly formatted
 npm run check         # Run both lint and format checks
 ```
 
-## 🔧 Git Hooks & Quality Assurance
+### Code Quality Tools
 
-### Pre-commit Hooks
+#### **ESLint** - JavaScript/Node.js Linting
 
-This project uses **Husky** to automatically run quality checks before each commit:
+- **Purpose**: Catches bugs, enforces consistent code style
+- **Configuration**: `eslint.config.js` (modern flat config format)
+- **Features**: Electron-specific configurations, Prettier integration
 
-- **Automatic Setup**: Hooks are installed when you run `npm install`
+#### **Prettier** - Code Formatting
+
+- **Purpose**: Automatic code formatting for consistent style
+- **Configuration**: `.prettierrc`
+- **Features**: Works seamlessly with ESLint, configurable rules
+
+#### **Husky** - Git Hooks
+
+- **Purpose**: Automatically run quality checks before commits
+- **Setup**: Installed automatically with `npm install`
 - **Pre-commit**: Runs `npm run check` to ensure code quality
-- **Bypass**: Use `git commit --no-verify` if needed (not recommended)
 
-### Line Ending Configuration
+### Configuration Files
 
-Consistent line endings across all platforms:
+- **`eslint.config.js`**: Modern ESLint flat configuration
+- **`.prettierrc`**: Prettier settings (double quotes, semicolons, 2-space indentation)
+- **`.prettierignore`**: Files to exclude from formatting
+- **`.gitattributes`**: Line ending configuration for cross-platform compatibility
 
-- **`.gitattributes`**: Ensures proper line ending handling
-- **Prettier**: Configured with `"endOfLine": "auto"`
-- **CI**: Automatically normalizes line endings during build
-- **Cross-platform**: Works on Windows, macOS, and Linux
-
-## 🚀 CI/CD Pipeline
-
-### GitHub Actions Workflow
-
-The project uses a streamlined CI/CD pipeline (`.github/workflows/build.yml`):
-
-1. **Checkout**: Downloads source code
-2. **Setup Node.js**: Installs Node.js with caching
-3. **Install Dependencies**: Installs npm packages
-4. **Normalize Line Endings**: Ensures consistent line endings
-5. **Quality Checks**: Runs linting and formatting checks
-6. **Package Application**: Creates Windows distributable
-7. **Upload Artifacts**: Saves build for download
-
-### Build Artifacts
-
-- **Platform**: Windows only (optimized for target platform)
-- **Output**: `dist/Typy-win32-x64/` directory
-- **Artifact**: Available for download from GitHub Actions
-- **Retention**: 7 days
-
-## 🎯 Why These Tools Are Worth It
-
-### **1. Catches Bugs Early**
-
-- ESLint identifies potential issues before they become problems
-- Finds unused variables, imports, and common mistakes
-- Prevents runtime errors through static analysis
-
-### **2. Consistent Code Style**
-
-- Prettier ensures uniform formatting across your team
-- No more debates about code formatting
-- Professional, readable codebase
-
-### **3. Better Code Quality**
-
-- Enforces best practices and modern JavaScript patterns
-- Maintains high code standards
-- Improves maintainability
-
-### **4. Team Collaboration**
-
-- Everyone writes code in the same style
-- Reduces merge conflicts
-- Easier code reviews
-
-### **5. Professional Standards**
-
-- Industry-standard tools used by major projects
-- Demonstrates commitment to code quality
-- Makes the project more attractive to contributors
-
-## 🔧 How to Use
+## 🔧 Development Workflow
 
 ### During Development
 
@@ -204,65 +103,67 @@ Most modern editors support ESLint and Prettier:
 - **WebStorm**: Built-in support for both tools
 - **Vim/Neovim**: Use ALE or similar plugins
 
-### Pre-commit Hooks
+## 🚀 CI/CD Pipeline
 
-Consider adding these checks to your Git hooks for automatic validation:
-
-```bash
-# In .git/hooks/pre-commit
-npm run check
-```
-
-### GitHub Actions
-
-The project includes automated CI/CD workflows that run on every PR and push to master:
-
-#### **Quality Checks** (`.github/workflows/ci.yml`)
-
-- Runs linting and formatting checks
-- Ensures code quality standards are met
-- Fails PRs that don't meet quality requirements
+### GitHub Actions Workflows
 
 #### **Build and Test** (`.github/workflows/build.yml`)
 
-- Runs quality checks first
-- Builds the Electron app on multiple platforms
-- Creates build artifacts for Windows
-- Tests the application startup
+- **Triggers**: Push to master branch, Pull requests to master
+- **Purpose**: Quality assurance and build testing
+- **Process**: Setup → Install → Quality checks → Package → Upload artifacts
 
-#### **Status Badge**
+#### **Automated Releases** (`.github/workflows/release.yml`)
 
-Add this to your README to show CI status:
+- **Triggers**: Push of version tags (v\* pattern)
+- **Purpose**: Automated release creation
+- **Process**: Setup → Build → Create zip → Create GitHub release
 
-```markdown
-[![CI](https://github.com/yourusername/typy/actions/workflows/ci.yml/badge.svg)](https://github.com/yourusername/typy/actions/workflows/ci.yml)
-```
+### Build Artifacts
 
-**Note**: Replace `yourusername` with your actual GitHub username.
+- **Platform**: Windows only
+- **Output**: `dist/Typy-win32-x64/` directory
+- **Zip File**: `dist/Typy-win32-x64.zip` (created during releases)
+- **Retention**: 7 days
 
-#### **Recommended Branch Protection Rules**
+## 📦 Release Process
 
-For maximum code quality, consider setting up branch protection rules in GitHub:
+### Creating a Release
 
-1. **Require status checks to pass before merging**
-   - Enable "Require status checks to pass before merging"
-   - Select the CI workflow as a required status check
+1. **Update CHANGELOG.md**:
+   - Move items from `[Unreleased]` to a new version section
+   - Add the release date and version number
+   - Clear the `[Unreleased]` section
 
-2. **Require branches to be up to date**
-   - Enable "Require branches to be up to date before merging"
+2. **Commit and push changes**:
 
-3. **Require pull request reviews**
-   - Enable "Require pull request reviews before merging"
-   - Set minimum number of approving reviews (recommended: 1)
+   ```bash
+   git add CHANGELOG.md
+   git commit -m "Update changelog for v1.1.0"
+   git push origin master
+   ```
 
-4. **Dismiss stale reviews**
-   - Enable "Dismiss stale pull request approvals when new commits are pushed"
+3. **Create and push version tag**:
+
+   ```bash
+   git tag v1.1.0
+   git push origin v1.1.0
+   ```
+
+4. **The release workflow automatically**:
+   - Builds the Electron app with electron-packager
+   - Creates a zip file
+   - Creates a GitHub release with structured notes template
+
+5. **Update GitHub release notes**:
+   - Edit the release description with specific details
+   - Add information under template sections (New Features, Improvements, Bug Fixes)
 
 ## 📋 Best Practices
 
 ### Code Style
 
-- Use single quotes for strings
+- Use double quotes for strings
 - Always use semicolons
 - Use 2-space indentation
 - Keep lines under 80 characters
@@ -288,16 +189,11 @@ For maximum code quality, consider setting up branch protection rules in GitHub:
 
 **ESLint Ignore Warning**
 
-```
-The ".eslintignore" file is no longer supported
-```
-
 - Solution: The new flat config format uses the `ignores` property in `eslint.config.js`
 
 **Prettier Conflicts**
 
 - Solution: ESLint and Prettier are configured to work together
-- Use `eslint-config-prettier` to disable conflicting rules
 
 **Unused Variable Errors**
 
@@ -315,7 +211,3 @@ npm update eslint prettier eslint-config-prettier eslint-plugin-prettier
 - [Prettier Documentation](https://prettier.io/)
 - [Electron Security Best Practices](https://www.electronjs.org/docs/tutorial/security)
 - [JavaScript Style Guide](https://github.com/airbnb/javascript)
-
----
-
-This setup ensures your Electron project maintains professional code quality standards and provides a smooth development experience for all contributors.
