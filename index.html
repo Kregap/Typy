@@ -130,6 +130,46 @@
         border-radius: 3px;
         font-size: 0.98em;
       }
+      
+      /* Reset margins for markdown content elements in preview area */
+      .preview-area h1,
+      .preview-area h2,
+      .preview-area h3,
+      .preview-area h4,
+      .preview-area h5,
+      .preview-area h6,
+      .preview-area p,
+      .preview-area ul,
+      .preview-area ol,
+      .preview-area li,
+      .preview-area hr,
+      .preview-area table,
+      .preview-area tr,
+      .preview-area td,
+      .preview-area th {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      
+      /* Restore minimal padding for specific elements if needed */
+      .preview-area blockquote {
+        padding-left: 0.5em !important;
+        border-left: 2px solid #ccc !important;
+      }
+      
+      .preview-area pre {
+        background: #f4f4f4 !important;
+        border-radius: 3px !important;
+        font-size: 0.98em !important;
+        padding: 0.5em !important;
+      }
+      
+      /* Fix list positioning to keep bullets/numbers inside container */
+      .preview-area ul,
+      .preview-area ol {
+        list-style-position: inside !important;
+        padding-left: 0 !important;
+      }
   </style>
   </head>
   <body>

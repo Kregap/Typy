@@ -60,7 +60,9 @@ window.typoraLite = (function() {
              } else {
          div.style.padding = '0'; /* Remove padding to avoid extra space */
          div.style.boxSizing = 'border-box';
-         div.style.minHeight = 'auto';
+                   div.style.minHeight = 'auto';
+
+         
          
          // Create the content div first to measure its height
          const contentDiv = document.createElement('div');
@@ -77,14 +79,14 @@ window.typoraLite = (function() {
          // Remove the temporary div
          div.removeChild(contentDiv);
          
-         // If content is shorter than viewport, center it vertically
-         if (contentHeight < viewportHeight) {
-           div.style.display = 'grid';
-           div.style.placeItems = 'center';
-           div.style.minHeight = '100vh';
-         }
-         
-         div.innerHTML = `<div style="width:fit-content;margin:0 auto;padding:0.5em;">${marked.parse(text)}</div>`;
+                             // If content is shorter than viewport, center it vertically
+          if (contentHeight < viewportHeight) {
+            div.style.display = 'grid';
+            div.style.placeItems = 'center';
+            div.style.minHeight = '100vh';
+          }
+          
+          div.innerHTML = `<div style="width:fit-content;margin:0px auto;padding:0px 8px;">${marked.parse(text)}</div>`;
        }
       // Add a global mousedown handler to always switch to edit mode on left click
       function globalPreviewToEditHandler(e) {
