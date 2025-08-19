@@ -28,6 +28,10 @@ window.typoraLite = (function () {
       textarea.style.width = "100%";
       textarea.style.height = "100vh";
       textarea.style.fontSize = globalFontSize + "em";
+      textarea.style.background = "transparent";
+      textarea.style.border = "none";
+      textarea.style.outline = "none";
+      textarea.style.boxSizing = "border-box";
       textarea.addEventListener("input", _e => {
         text = textarea.value;
       });

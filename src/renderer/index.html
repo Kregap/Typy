@@ -12,7 +12,7 @@
         margin: 0;
         padding: 0;
         font-family: "MesloLGL Nerd Font", "Segoe UI", sans-serif;
-        background: #f8f8f8;
+        background: #f0f0f0;
         color: #222;
         overflow-x: hidden;
       }
@@ -43,6 +43,10 @@
         gap: 0;
         overflow-x: hidden;
         word-break: break-word;
+        /* Background color - concave effect applied conditionally via JavaScript */
+        background: #ffffff;
+        width: 100vw;
+        height: 100vh;
       }
       .edit-line {
         width: 100%;
@@ -209,7 +213,8 @@
     <script>
       // Configuration options
       const CONFIG = {
-        showScrollbars: false // Set to true to show scrollbars, false to hide them
+        showScrollbars: false, // Set to true to show scrollbars, false to hide them
+        concaveEffect: true // Set to true to enable concave effect, false to disable it
       };
 
       // Apply scrollbar visibility based on configuration
@@ -258,6 +263,22 @@
         }
       `;
         document.head.appendChild(style);
+      }
+
+      // Apply concave effect based on configuration
+      if (CONFIG.concaveEffect) {
+        const concaveStyle = document.createElement("style");
+        concaveStyle.textContent = `
+          #workarea {
+            border-radius: 8px;
+            box-shadow: 
+              inset 0 0 8px rgba(0, 0, 0, 0.6),
+              inset 0 0 12px rgba(0, 0, 0, 0.4),
+              inset 0 0 15px rgba(0, 0, 0, 0.25);
+            background: #ffffff;
+          }
+        `;
+        document.head.appendChild(concaveStyle);
       }
 
       const workarea = document.getElementById("workarea");
