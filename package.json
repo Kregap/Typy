@@ -1,6 +1,7 @@
 {
   "name": "typy",
   "version": "1.0.0",
+  "type": "module",
   "description": "A minimal Markdown editor for Windows (Electron)",
   "main": "main.js",
   "scripts": {

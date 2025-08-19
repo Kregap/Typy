@@ -4,6 +4,17 @@ import prettier from 'eslint-plugin-prettier';
 import prettierConfig from 'eslint-config-prettier';
 
 export default [
+  {
+    ignores: [
+      'node_modules/**',
+      'dist/**',
+      'build/**',
+      '*.min.js',
+      '*.min.css',
+      'package-lock.json',
+      '.git/**'
+    ]
+  },
   js.configs.recommended,
   prettierConfig,
   {
@@ -38,19 +49,22 @@ export default [
     },
     rules: {
       // General JavaScript rules
-      'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+      'no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }
+      ],
       'no-console': 'warn',
       'prefer-const': 'error',
       'no-var': 'error',
       'no-undef': 'error',
-      
+
       // Node.js specific rules
       'node/no-missing-import': 'off', // Allow require() in Electron
       'node/no-unsupported-features/es-syntax': 'off', // Allow ES modules
-      
+
       // Prettier integration
       'prettier/prettier': 'error',
-      
+
       // Code style (handled by Prettier)
       'no-trailing-spaces': 'error',
       'eol-last': 'error'
@@ -75,7 +89,11 @@ export default [
       globals: {
         // Renderer process specific globals
         marked: 'readonly',
-        electronAPI: 'readonly'
+        electronAPI: 'readonly',
+        // Additional globals used in editor.js
+        window: 'readonly',
+        document: 'readonly',
+        setTimeout: 'readonly'
       }
     }
   }

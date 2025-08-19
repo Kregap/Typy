@@ -1,20 +1,21 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Typy</title>
     <style>
-    html, body {
-      height: 100%;
-      width: 100vw;
-      margin: 0;
-      padding: 0;
-      font-family: 'MesloLGL Nerd Font', 'Segoe UI', sans-serif;
-      background: #f8f8f8;
-      color: #222;
-      overflow-x: hidden;
-    }
+      html,
+      body {
+        height: 100%;
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+        font-family: 'MesloLGL Nerd Font', 'Segoe UI', sans-serif;
+        background: #f8f8f8;
+        color: #222;
+        overflow-x: hidden;
+      }
       #container {
         display: flex;
         height: 100vh;
@@ -29,13 +30,13 @@
         margin: 0;
         padding-left: 0;
         height: 100vh; /* Restore height for proper edit area sizing */
-      .preview-area {
-        padding: 0;
-        margin: 0;
-        width: 100%;
-        line-height: 1.02;
-      }
-                 background: #fff;
+        .preview-area {
+          padding: 0;
+          margin: 0;
+          width: 100%;
+          line-height: 1.02;
+        }
+        background: #fff;
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
@@ -66,7 +67,7 @@
         margin-left: auto;
         margin-right: auto;
       }
-      
+
       /* Proper spacing for markdown content elements in preview area */
       .preview-area h1 {
         margin: 0.8em 0 0.3em 0 !important;
@@ -75,7 +76,7 @@
         font-weight: bold !important;
         line-height: 1.2 !important;
       }
-      
+
       .preview-area h2 {
         margin: 0.6em 0 0.25em 0 !important;
         padding: 0 !important;
@@ -83,7 +84,7 @@
         font-weight: bold !important;
         line-height: 1.3 !important;
       }
-      
+
       .preview-area h3 {
         margin: 0.5em 0 0.2em 0 !important;
         padding: 0 !important;
@@ -91,7 +92,7 @@
         font-weight: bold !important;
         line-height: 1.4 !important;
       }
-      
+
       .preview-area h4,
       .preview-area h5,
       .preview-area h6 {
@@ -100,13 +101,13 @@
         font-weight: bold !important;
         line-height: 1.4 !important;
       }
-      
+
       .preview-area p {
         margin: 0.8em 0 !important;
         padding: 0 !important;
         line-height: 1.6 !important;
       }
-      
+
       .preview-area ul,
       .preview-area ol {
         margin: 0.8em 0 !important;
@@ -118,19 +119,19 @@
       .preview-area ol {
         padding-left: 2.2em !important;
       }
-      
+
       .preview-area li {
         margin: 0.3em 0 !important;
         padding: 0 !important;
         line-height: 1.6 !important;
       }
-      
+
       .preview-area li ul,
       .preview-area li ol {
         margin: 0.3em 0 !important;
         padding-left: 1.5em !important;
       }
-      
+
       .preview-area hr {
         margin: 1.5em 0 !important;
         padding: 0 !important;
@@ -138,19 +139,19 @@
         border-top: 1px solid #ccc !important;
         height: 1px !important;
       }
-      
+
       .preview-area table {
         margin: 1em 0 !important;
         padding: 0 !important;
         border-collapse: collapse !important;
         width: 100% !important;
       }
-      
+
       .preview-area tr {
         margin: 0 !important;
         padding: 0 !important;
       }
-      
+
       .preview-area td,
       .preview-area th {
         margin: 0 !important;
@@ -158,12 +159,12 @@
         border: 1px solid #ddd !important;
         text-align: left !important;
       }
-      
+
       .preview-area th {
         background-color: #f5f5f5 !important;
         font-weight: bold !important;
       }
-      
+
       /* Blockquote styling */
       .preview-area blockquote {
         margin: 1em 0 !important;
@@ -172,7 +173,7 @@
         background-color: #f9f9f9 !important;
         font-style: italic !important;
       }
-      
+
       /* Code block styling */
       .preview-area pre {
         margin: 1em 0 !important;
@@ -183,7 +184,7 @@
         overflow-x: auto !important;
         line-height: 1.4 !important;
       }
-      
+
       .preview-area code {
         background: #f4f4f4 !important;
         padding: 0.2em 0.4em !important;
@@ -191,13 +192,13 @@
         font-size: 0.9em !important;
         font-family: 'Courier New', monospace !important;
       }
-      
+
       .preview-area pre code {
         background: none !important;
         padding: 0 !important;
         border-radius: 0 !important;
       }
-  </style>
+    </style>
   </head>
   <body>
     <div id="container">
@@ -206,16 +207,16 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="editor.js"></script>
     <script>
-    // Configuration options
-    const CONFIG = {
-      showScrollbars: false // Set to true to show scrollbars, false to hide them
-    };
-    
-    // Apply scrollbar visibility based on configuration
-    if (!CONFIG.showScrollbars) {
-      // Hide scrollbars when showScrollbars is false
-      const style = document.createElement('style');
-      style.textContent = `
+      // Configuration options
+      const CONFIG = {
+        showScrollbars: false // Set to true to show scrollbars, false to hide them
+      };
+
+      // Apply scrollbar visibility based on configuration
+      if (!CONFIG.showScrollbars) {
+        // Hide scrollbars when showScrollbars is false
+        const style = document.createElement('style');
+        style.textContent = `
         /* Hide scrollbar but keep scroll functionality */
         html, body {
           scrollbar-width: none; /* Firefox */
@@ -256,65 +257,68 @@
           display: none; /* Chrome, Safari, Opera */
         }
       `;
-      document.head.appendChild(style);
-    }
-    
-    const workarea = document.getElementById('workarea');
-    window.typoraLite.setWorkarea(workarea);
-    window.typoraLite.render();
-    window.typoraLite.focusInput();
-    // Mouse and keyboard shortcuts
-    let isRightDragging = false;
-    let lastX = 0, lastY = 0;
-    document.addEventListener('mousedown', (e) => {
-      if (window.typoraLite.handleMousedown(e)) return;
-      if (e.button === 2) {
-        isRightDragging = true;
-        lastX = e.screenX;
-        lastY = e.screenY;
-        e.preventDefault();
+        document.head.appendChild(style);
       }
-    });
-    document.addEventListener('mousemove', (e) => {
-      if (isRightDragging) {
-        const dx = e.screenX - lastX;
-        const dy = e.screenY - lastY;
-        if (window.electronAPI && (dx !== 0 || dy !== 0)) {
-          window.electronAPI.moveWindow(dx, dy);
+
+      const workarea = document.getElementById('workarea');
+      window.typoraLite.setWorkarea(workarea);
+      window.typoraLite.render();
+      window.typoraLite.focusInput();
+      // Mouse and keyboard shortcuts
+      let isRightDragging = false;
+      let lastX = 0,
+        lastY = 0;
+      document.addEventListener('mousedown', e => {
+        if (window.typoraLite.handleMousedown(e)) return;
+        if (e.button === 2) {
+          isRightDragging = true;
+          lastX = e.screenX;
+          lastY = e.screenY;
+          e.preventDefault();
         }
-        lastX = e.screenX;
-        lastY = e.screenY;
-      }
-    });
-    document.addEventListener('mouseup', (e) => {
-      if (e.button === 2) {
-        isRightDragging = false;
-      }
-    });
-    document.addEventListener('contextmenu', (e) => {
-      if (isRightDragging) e.preventDefault();
-    });
-    document.addEventListener('keydown', window.typoraLite.handleKeydown);
-    
-    // Global zoom functionality - works when mouse is over any part of the app
-    let globalFontSize = 1.1; // em, default font size
-    document.addEventListener('wheel', (e) => {
-      if (e.ctrlKey) {
-        e.preventDefault();
-        if (e.deltaY < 0) {
-          globalFontSize = Math.min(globalFontSize + 0.1, 3);
+      });
+      document.addEventListener('mousemove', e => {
+        if (isRightDragging) {
+          const dx = e.screenX - lastX;
+          const dy = e.screenY - lastY;
+          if (window.electronAPI && (dx !== 0 || dy !== 0)) {
+            window.electronAPI.moveWindow(dx, dy);
+          }
+          lastX = e.screenX;
+          lastY = e.screenY;
         }
-        if (e.deltaY > 0) {
-          globalFontSize = Math.max(globalFontSize - 0.1, 0.5);
+      });
+      document.addEventListener('mouseup', e => {
+        if (e.button === 2) {
+          isRightDragging = false;
         }
-        
-        // Update the global font size in the editor
-        if (window.typoraLite && typeof window.typoraLite.setGlobalFontSize === 'function') {
-          window.typoraLite.setGlobalFontSize(globalFontSize);
+      });
+      document.addEventListener('contextmenu', e => {
+        if (isRightDragging) e.preventDefault();
+      });
+      document.addEventListener('keydown', window.typoraLite.handleKeydown);
+
+      // Global zoom functionality - works when mouse is over any part of the app
+      let globalFontSize = 1.1; // em, default font size
+      document.addEventListener('wheel', e => {
+        if (e.ctrlKey) {
+          e.preventDefault();
+          if (e.deltaY < 0) {
+            globalFontSize = Math.min(globalFontSize + 0.1, 3);
+          }
+          if (e.deltaY > 0) {
+            globalFontSize = Math.max(globalFontSize - 0.1, 0.5);
+          }
+
+          // Update the global font size in the editor
+          if (
+            window.typoraLite &&
+            typeof window.typoraLite.setGlobalFontSize === 'function'
+          ) {
+            window.typoraLite.setGlobalFontSize(globalFontSize);
+          }
         }
-      }
-    });
-  </script>
+      });
+    </script>
   </body>
 </html>
-

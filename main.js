@@ -36,7 +36,7 @@ function createWindow() {
     const [winWidth, winHeight] = win.getSize();
     const x = Math.round(winX + (winWidth - popupWidth) / 2);
     const y = Math.round(winY + (winHeight - popupHeight) / 2);
-    
+
     let popup = new BrowserWindow({
       width: popupWidth,
       height: popupHeight,
@@ -57,11 +57,13 @@ function createWindow() {
     });
     popup.setMenuBarVisibility(false);
     popup.loadFile('about.html');
-    popup.on('closed', () => { popup = null; });
+    popup.on('closed', () => {
+      popup = null;
+    });
   });
 
   // Always listen for insert-sample-markdown from any window
-  ipcMain.on('insert-sample-markdown', (event) => {
+  ipcMain.on('insert-sample-markdown', _event => {
     // Read sample.md and send to main window
     const fs = require('fs');
     const samplePath = path.join(__dirname, 'sample.md');
