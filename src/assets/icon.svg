@@ -1,8 +1,7 @@
 <svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="256" height="256" rx="48" fill="#F8F8F8"/>
-  <rect x="48" y="48" width="160" height="160" rx="20" fill="#FFF" stroke="#D1D5DB" stroke-width="4"/>
-  <text x="50%" y="54%" text-anchor="middle" fill="#222" font-family="Segoe UI, Arial, sans-serif" font-size="96" font-weight="bold" dy=".35em">T</text>
-  <rect x="80" y="180" width="96" height="12" rx="6" fill="#D1D5DB"/>
-  <rect x="80" y="200" width="56" height="8" rx="4" fill="#E5E7EB"/>
-  <rect x="80" y="212" width="32" height="6" rx="3" fill="#E5E7EB"/>
+  <!-- Sticky note with cut corner - using path to create the shape -->
+  <path d="M 0 0 L 188 0 L 256 68 L 256 256 L 0 256 Z" fill="#FFEB3B"/>
+  
+  <!-- M letter that fits within the note -->
+  <text x="50%" y="50%" text-anchor="middle" fill="#424242" font-family="Segoe UI, Arial, sans-serif" font-size="180" font-weight="900" dy=".35em">M</text>
 </svg>
