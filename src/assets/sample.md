@@ -22,7 +22,7 @@ _Italic text_
 `Inline code`
 
 ```js
-console.log('Code block');
+console.log("Code block");
 ```
 
 > Blockquote

@@ -11,7 +11,7 @@ The project uses industry-standard tools to maintain code quality and consistenc
 #### **ESLint** - JavaScript/Node.js Linting
 
 - **Purpose**: Catches bugs, enforces consistent code style, identifies unused variables and imports
-- **Configuration**: `eslint.config.js` (modern flat config format)
+- **Configuration**: `eslint.config.js` in root directory (modern flat config format)
 - **Features**:
   - Electron-specific configurations for main and renderer processes
   - Prettier integration to avoid conflicts

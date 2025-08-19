@@ -1,12 +1,15 @@
 # Typy
 
-Typy allows to take short notes on your desktop with Markdown for Windows (Electron).
+A minimal Markdown editor for Windows built with Electron.
 
 [![CI](https://github.com/kregap/typy/actions/workflows/ci.yml/badge.svg)](https://github.com/kregap/typy/actions/workflows/ci.yml)
 
-## Development
+## Quick Start
 
-For development setup, tools, and best practices, see [DEVELOPMENT.md](./DEVELOPMENT.md).
+```bash
+npm install
+npm start
+```
 
 ## Demo
 
@@ -20,7 +23,61 @@ https://github.com/user-attachments/assets/54a9bf71-180c-4c71-9fbf-3259a37c4f1b
 
 https://github.com/user-attachments/assets/a1c683cb-3dd0-4806-80bd-c475f3ffad0a
 
-## How to package Typy as a standalone Windows app
+## Project Structure
+
+```
+Typy/
+├── src/                    # Source code
+│   ├── main/              # Main process files
+│   │   ├── main.js        # Electron main process
+│   │   └── preload.js     # Preload script
+│   ├── renderer/          # Renderer process files
+│   │   ├── index.html     # Main window HTML
+│   │   ├── about.html     # About popup HTML
+│   │   └── editor.js      # Editor functionality
+│   └── assets/            # Static assets
+│       ├── icon.svg       # SVG icon
+│       ├── icon.ico       # Windows icon
+│       └── sample.md      # Sample markdown
+├── scripts/               # Build/utility scripts
+│   └── svg-to-ico.ps1     # Icon conversion script
+├── docs/                  # Documentation
+│   ├── readme.md          # Original README
+│   └── DEVELOPMENT.md     # Development guide
+├── eslint.config.js       # ESLint configuration
+├── .prettierrc            # Prettier configuration
+└── .prettierignore        # Prettier ignore rules
+└── dist/                  # Build output
+```
+
+## Development
+
+This project uses modern development tools:
+
+- **ESLint** - Code linting and quality checks
+- **Prettier** - Code formatting
+- **Electron** - Cross-platform desktop app framework
+
+### Available Scripts
+
+```bash
+# Linting
+npm run lint          # Check for linting issues
+npm run lint:fix      # Fix linting issues automatically
+
+# Formatting
+npm run format        # Format all code with Prettier
+npm run format:check  # Check if code is properly formatted
+
+# Combined checks
+npm run check         # Run both lint and format checks
+```
+
+For detailed development setup, tools, and best practices, see [DEVELOPMENT.md](docs/DEVELOPMENT.md).
+
+## Packaging
+
+### How to package Typy as a standalone Windows app
 
 1. Open a terminal in the project directory.
 2. Run the following command:
@@ -30,6 +87,8 @@ https://github.com/user-attachments/assets/a1c683cb-3dd0-4806-80bd-c475f3ffad0a
    ```
 
 3. The packaged app will be in the `dist/Typy-win32-x64` folder. Run or distribute `Typy.exe` from there.
+
+**Notes:**
 
 - Make sure you have run `npm install` before packaging.
 - You can create a zip from the build with `powershell Compress-Archive -Path dist\Typy-win32-x64\* -DestinationPath dist\Typy-win32-x64.zip -Force`.

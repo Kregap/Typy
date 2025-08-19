@@ -11,7 +11,7 @@
         width: 100vw;
         margin: 0;
         padding: 0;
-        font-family: 'MesloLGL Nerd Font', 'Segoe UI', sans-serif;
+        font-family: "MesloLGL Nerd Font", "Segoe UI", sans-serif;
         background: #f8f8f8;
         color: #222;
         overflow-x: hidden;
@@ -190,7 +190,7 @@
         padding: 0.2em 0.4em !important;
         border-radius: 3px !important;
         font-size: 0.9em !important;
-        font-family: 'Courier New', monospace !important;
+        font-family: "Courier New", monospace !important;
       }
 
       .preview-area pre code {
@@ -215,7 +215,7 @@
       // Apply scrollbar visibility based on configuration
       if (!CONFIG.showScrollbars) {
         // Hide scrollbars when showScrollbars is false
-        const style = document.createElement('style');
+        const style = document.createElement("style");
         style.textContent = `
         /* Hide scrollbar but keep scroll functionality */
         html, body {
@@ -260,7 +260,7 @@
         document.head.appendChild(style);
       }
 
-      const workarea = document.getElementById('workarea');
+      const workarea = document.getElementById("workarea");
       window.typoraLite.setWorkarea(workarea);
       window.typoraLite.render();
       window.typoraLite.focusInput();
@@ -268,7 +268,7 @@
       let isRightDragging = false;
       let lastX = 0,
         lastY = 0;
-      document.addEventListener('mousedown', e => {
+      document.addEventListener("mousedown", e => {
         if (window.typoraLite.handleMousedown(e)) return;
         if (e.button === 2) {
           isRightDragging = true;
@@ -277,7 +277,7 @@
           e.preventDefault();
         }
       });
-      document.addEventListener('mousemove', e => {
+      document.addEventListener("mousemove", e => {
         if (isRightDragging) {
           const dx = e.screenX - lastX;
           const dy = e.screenY - lastY;
@@ -288,19 +288,19 @@
           lastY = e.screenY;
         }
       });
-      document.addEventListener('mouseup', e => {
+      document.addEventListener("mouseup", e => {
         if (e.button === 2) {
           isRightDragging = false;
         }
       });
-      document.addEventListener('contextmenu', e => {
+      document.addEventListener("contextmenu", e => {
         if (isRightDragging) e.preventDefault();
       });
-      document.addEventListener('keydown', window.typoraLite.handleKeydown);
+      document.addEventListener("keydown", window.typoraLite.handleKeydown);
 
       // Global zoom functionality - works when mouse is over any part of the app
       let globalFontSize = 1.1; // em, default font size
-      document.addEventListener('wheel', e => {
+      document.addEventListener("wheel", e => {
         if (e.ctrlKey) {
           e.preventDefault();
           if (e.deltaY < 0) {
@@ -313,7 +313,7 @@
           // Update the global font size in the editor
           if (
             window.typoraLite &&
-            typeof window.typoraLite.setGlobalFontSize === 'function'
+            typeof window.typoraLite.setGlobalFontSize === "function"
           ) {
             window.typoraLite.setGlobalFontSize(globalFontSize);
           }
