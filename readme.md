@@ -2,6 +2,10 @@
 
 Typy allows to take short notes on your desktop with Markdown for Windows (Electron).
 
+## Development
+
+For development setup, tools, and best practices, see [DEVELOPMENT.md](./DEVELOPMENT.md).
+
 ## Demo
 
 See Typy in action with these demo videos:
