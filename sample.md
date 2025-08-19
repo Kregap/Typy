@@ -1,3 +1,5 @@
+Paragraph at the beginning of the document.
+
 # Header 1
 ## Header 2
 ### Header 3

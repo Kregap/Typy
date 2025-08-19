@@ -58,36 +58,7 @@
         overflow-x: hidden;
         word-break: break-word;
       }
-      .preview-line {
-        width: 100%;
-        font-size: 0.95em;
-        color: #222;
-        padding: 0 !important;
-        margin-left: 2em !important;
-        margin: 0 !important;
-        background: transparent;
-        cursor: pointer;
-        min-height: 0 !important;
-        height: auto !important;
-        box-sizing: border-box !important;
-        line-height: 1 !important;
-        white-space: pre-wrap !important;
-        overflow-x: hidden !important;
-        overflow-y: hidden !important;
-        word-break: break-word !important;
-        display: block !important;
-      }
-      .preview-line * {
-        margin: 0 !important;
-        padding: 0 !important;
-        line-height: 1 !important;
-        min-height: 0 !important;
-        height: auto !important;
-        box-sizing: border-box !important;
-        border: none !important;
-        background: transparent !important;
-      }
-      .preview-line img, .preview-area img {
+      .preview-area img {
         width: 100%;
         max-width: 100%;
         height: auto;
@@ -95,40 +66,136 @@
         margin-left: auto;
         margin-right: auto;
       }
-      /* Restore natural markdown spacing for preview mode */
-      .preview-line p,
-      .preview-line h1,
-      .preview-line h2,
-      .preview-line h3,
-      .preview-line h4,
-      .preview-line h5,
-      .preview-line h6,
-      .preview-line ul,
-      .preview-line ol,
-      .preview-line li,
-      .preview-line blockquote,
-      .preview-line pre,
-      .preview-line hr,
-      .preview-line table,
-      .preview-line tr,
-      .preview-line td,
-      .preview-line th {
+      
+      /* Proper spacing for markdown content elements in preview area */
+      .preview-area h1 {
+        margin: 0.8em 0 0.3em 0 !important;
+        padding: 0 !important;
+        font-size: 2em !important;
+        font-weight: bold !important;
+        line-height: 1.2 !important;
+      }
+      
+      .preview-area h2 {
+        margin: 0.6em 0 0.25em 0 !important;
+        padding: 0 !important;
+        font-size: 1.5em !important;
+        font-weight: bold !important;
+        line-height: 1.3 !important;
+      }
+      
+      .preview-area h3 {
+        margin: 0.5em 0 0.2em 0 !important;
+        padding: 0 !important;
+        font-size: 1.25em !important;
+        font-weight: bold !important;
+        line-height: 1.4 !important;
+      }
+      
+      .preview-area h4,
+      .preview-area h5,
+      .preview-area h6 {
+        margin: 0.4em 0 0.2em 0 !important;
+        padding: 0 !important;
+        font-weight: bold !important;
+        line-height: 1.4 !important;
+      }
+      
+      .preview-area p {
+        margin: 0.8em 0 !important;
+        padding: 0 !important;
+        line-height: 1.6 !important;
+      }
+      
+      .preview-area ul,
+      .preview-area ol {
+        margin: 0.8em 0 !important;
+        padding-left: 1.5em !important;
+        list-style-position: outside !important;
+        line-height: 1.6 !important;
+      }
+
+      .preview-area ol {
+        padding-left: 2.2em !important;
+      }
+      
+      .preview-area li {
+        margin: 0.3em 0 !important;
+        padding: 0 !important;
+        line-height: 1.6 !important;
+      }
+      
+      .preview-area li ul,
+      .preview-area li ol {
+        margin: 0.3em 0 !important;
+        padding-left: 1.5em !important;
+      }
+      
+      .preview-area hr {
+        margin: 1.5em 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        border-top: 1px solid #ccc !important;
+        height: 1px !important;
+      }
+      
+      .preview-area table {
+        margin: 1em 0 !important;
+        padding: 0 !important;
+        border-collapse: collapse !important;
+        width: 100% !important;
+      }
+      
+      .preview-area tr {
         margin: 0 !important;
         padding: 0 !important;
-        line-height: 1 !important;
-        border: none !important;
-        min-height: 0 !important;
-        height: auto !important;
-        box-sizing: border-box !important;
       }
-      .preview-line blockquote {
-        border-left: 2px solid #ccc;
-        padding-left: 0.5em;
+      
+      .preview-area td,
+      .preview-area th {
+        margin: 0 !important;
+        padding: 0.5em !important;
+        border: 1px solid #ddd !important;
+        text-align: left !important;
       }
-      .preview-line pre {
-        background: #f4f4f4;
-        border-radius: 3px;
-        font-size: 0.98em;
+      
+      .preview-area th {
+        background-color: #f5f5f5 !important;
+        font-weight: bold !important;
+      }
+      
+      /* Blockquote styling */
+      .preview-area blockquote {
+        margin: 1em 0 !important;
+        padding: 0.5em 1em !important;
+        border-left: 4px solid #ccc !important;
+        background-color: #f9f9f9 !important;
+        font-style: italic !important;
+      }
+      
+      /* Code block styling */
+      .preview-area pre {
+        margin: 1em 0 !important;
+        background: #f4f4f4 !important;
+        border-radius: 3px !important;
+        font-size: 0.9em !important;
+        padding: 1em !important;
+        overflow-x: auto !important;
+        line-height: 1.4 !important;
+      }
+      
+      .preview-area code {
+        background: #f4f4f4 !important;
+        padding: 0.2em 0.4em !important;
+        border-radius: 3px !important;
+        font-size: 0.9em !important;
+        font-family: 'Courier New', monospace !important;
+      }
+      
+      .preview-area pre code {
+        background: none !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
       }
   </style>
   </head>
@@ -250,3 +317,4 @@
   </script>
   </body>
 </html>
+
