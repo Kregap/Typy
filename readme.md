@@ -2,7 +2,7 @@
 
 A minimal Markdown editor for Windows built with Electron.
 
-[![CI](https://github.com/kregap/typy/actions/workflows/ci.yml/badge.svg)](https://github.com/kregap/typy/actions/workflows/ci.yml)
+[![CI](https://github.com/kregap/typy/actions/workflows/build.yml/badge.svg)](https://github.com/kregap/typy/actions/workflows/build.yml)
 
 ## Quick Start
 
@@ -42,11 +42,12 @@ Typy/
 ├── scripts/               # Build/utility scripts
 │   └── svg-to-ico.ps1     # Icon conversion script
 ├── docs/                  # Documentation
-│   ├── readme.md          # Original README
 │   └── DEVELOPMENT.md     # Development guide
 ├── eslint.config.js       # ESLint configuration
 ├── .prettierrc            # Prettier configuration
-└── .prettierignore        # Prettier ignore rules
+├── .prettierignore        # Prettier ignore rules
+├── .gitattributes         # Line ending configuration
+├── .husky/                # Git hooks (pre-commit)
 └── dist/                  # Build output
 ```
 
@@ -56,6 +57,7 @@ This project uses modern development tools:
 
 - **ESLint** - Code linting and quality checks
 - **Prettier** - Code formatting
+- **Husky** - Git hooks for pre-commit quality checks
 - **Electron** - Cross-platform desktop app framework
 
 ### Available Scripts
@@ -72,6 +74,29 @@ npm run format:check  # Check if code is properly formatted
 # Combined checks
 npm run check         # Run both lint and format checks
 ```
+
+### Pre-commit Hooks
+
+This project uses Husky to automatically run quality checks before each commit:
+
+- **Pre-commit**: Runs `npm run check` to ensure code quality
+- **Automatic Setup**: Hooks are installed automatically when you run `npm install`
+
+If you need to bypass the pre-commit hook (not recommended), use:
+
+```bash
+git commit --no-verify -m "your message"
+```
+
+### Line Endings
+
+This project uses consistent line endings across all platforms:
+
+- **Configuration**: `.gitattributes` file ensures proper line ending handling
+- **Prettier**: Configured with `"endOfLine": "auto"` to respect platform defaults
+- **CI**: Automatically normalizes line endings during build
+
+This prevents issues with CRLF/LF differences between Windows, macOS, and Linux.
 
 For detailed development setup, tools, and best practices, see [DEVELOPMENT.md](docs/DEVELOPMENT.md).
 

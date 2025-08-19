@@ -27,6 +27,36 @@ The project uses industry-standard tools to maintain code quality and consistenc
   - Consistent formatting across all JavaScript files
   - Configurable formatting rules
 
+## 📁 Project Structure
+
+The project follows a clean, organized structure:
+
+```
+Typy/
+├── src/                    # Source code
+│   ├── main/              # Main process files
+│   │   ├── main.js        # Electron main process
+│   │   └── preload.js     # Preload script
+│   ├── renderer/          # Renderer process files
+│   │   ├── index.html     # Main window HTML
+│   │   ├── about.html     # About popup HTML
+│   │   └── editor.js      # Editor functionality
+│   └── assets/            # Static assets
+│       ├── icon.svg       # SVG icon
+│       ├── icon.ico       # Windows icon
+│       └── sample.md      # Sample markdown
+├── scripts/               # Build/utility scripts
+│   └── svg-to-ico.ps1     # Icon conversion script
+├── docs/                  # Documentation
+│   └── DEVELOPMENT.md     # Development guide
+├── eslint.config.js       # ESLint configuration
+├── .prettierrc            # Prettier configuration
+├── .prettierignore        # Prettier ignore rules
+├── .gitattributes         # Line ending configuration
+├── .husky/                # Git hooks (pre-commit)
+└── dist/                  # Build output
+```
+
 ## 📁 Configuration Files
 
 ### `eslint.config.js`
@@ -42,11 +72,12 @@ Modern ESLint flat configuration with:
 
 Prettier configuration with:
 
-- Single quotes for strings
+- Double quotes for strings
 - Semicolons enabled
 - 2-space indentation
 - 80-character line width
 - No trailing commas
+- Auto line ending detection
 
 ### `.prettierignore`
 
@@ -56,6 +87,7 @@ Specifies files to exclude from formatting:
 - `dist/` and `build/` directories
 - Minified files (`*.min.js`, `*.min.css`)
 - Package lock files
+- `.git/`, `.github/`, `.husky/` directories
 
 ### `package.json` Updates
 
@@ -66,6 +98,7 @@ Added development scripts:
 - `format`: Format all code with Prettier
 - `format:check`: Check if code is properly formatted
 - `check`: Run both lint and format checks
+- `prepare`: Automatically installs Husky git hooks
 
 ## 🚀 Available Scripts
 
@@ -81,6 +114,46 @@ npm run format:check  # Check if code is properly formatted
 # Combined checks
 npm run check         # Run both lint and format checks
 ```
+
+## 🔧 Git Hooks & Quality Assurance
+
+### Pre-commit Hooks
+
+This project uses **Husky** to automatically run quality checks before each commit:
+
+- **Automatic Setup**: Hooks are installed when you run `npm install`
+- **Pre-commit**: Runs `npm run check` to ensure code quality
+- **Bypass**: Use `git commit --no-verify` if needed (not recommended)
+
+### Line Ending Configuration
+
+Consistent line endings across all platforms:
+
+- **`.gitattributes`**: Ensures proper line ending handling
+- **Prettier**: Configured with `"endOfLine": "auto"`
+- **CI**: Automatically normalizes line endings during build
+- **Cross-platform**: Works on Windows, macOS, and Linux
+
+## 🚀 CI/CD Pipeline
+
+### GitHub Actions Workflow
+
+The project uses a streamlined CI/CD pipeline (`.github/workflows/build.yml`):
+
+1. **Checkout**: Downloads source code
+2. **Setup Node.js**: Installs Node.js with caching
+3. **Install Dependencies**: Installs npm packages
+4. **Normalize Line Endings**: Ensures consistent line endings
+5. **Quality Checks**: Runs linting and formatting checks
+6. **Package Application**: Creates Windows distributable
+7. **Upload Artifacts**: Saves build for download
+
+### Build Artifacts
+
+- **Platform**: Windows only (optimized for target platform)
+- **Output**: `dist/Typy-win32-x64/` directory
+- **Artifact**: Available for download from GitHub Actions
+- **Retention**: 7 days
 
 ## 🎯 Why These Tools Are Worth It
 
