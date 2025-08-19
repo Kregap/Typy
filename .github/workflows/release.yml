@@ -8,10 +8,14 @@ on:
 jobs:
   build-and-release:
     runs-on: windows-latest
+    permissions:
+      contents: write
     
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
         
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -38,13 +42,14 @@ jobs:
         run: |
           $version = $env:GITHUB_REF -replace 'refs/tags/v', ''
           echo "version=$version" >> $env:GITHUB_OUTPUT
+          echo "tag_name=$env:GITHUB_REF" >> $env:GITHUB_OUTPUT
           
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
           files: dist/Typy-win32-x64.zip
           name: Release v${{ steps.get_version.outputs.version }}
-          tag_name: ${{ github.ref }}
+          tag_name: ${{ steps.get_version.outputs.tag_name }}
           body: |
             ## Typy v${{ steps.get_version.outputs.version }}
             
