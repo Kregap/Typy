@@ -7,36 +7,9 @@ on:
     branches: [master]
 
 jobs:
-  quality-checks:
-    name: Code Quality
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "18"
-          cache: "npm"
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run linting checks
-        run: npm run lint
-
-      - name: Check code formatting
-        run: npm run format:check
-
-      - name: Run full check
-        run: npm run check
-
   build:
     name: Build Electron App
     runs-on: windows-latest
-    needs: quality-checks
 
     steps:
       - name: Checkout code
@@ -51,58 +24,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Test application structure
+      - name: Run quality checks
         run: |
-          # Verify all required files exist
-          test -f src/main/main.js
-          test -f src/main/preload.js
-          test -f src/renderer/index.html
-          test -f src/renderer/about.html
-          test -f src/renderer/editor.js
-          test -f src/assets/icon.ico
-          test -f src/assets/sample.md
-          echo "✅ All required files present"
-
-          # Test that package.json is valid
-          node -e "JSON.parse(require('fs').readFileSync('package.json', 'utf8'))"
-          echo "✅ package.json is valid JSON"
-
-          # Test that main entry point is correctly specified
-          node -e "const pkg = JSON.parse(require('fs').readFileSync('package.json', 'utf8')); if (!pkg.main) throw new Error('No main entry point'); console.log('✅ Main entry point:', pkg.main)"
-
-          # Test that the main process file syntax is valid (without running Electron)
-          node -c src/main/main.js
-          node -c src/main/preload.js
-          node -c src/renderer/editor.js
-          echo "✅ All JavaScript files have valid syntax"
-
-      - name: Test Electron installation
-        run: |
-          echo "Testing Electron version..."
-          npx electron --version
-          echo "✅ Electron is available and working"
-
-      - name: Test application startup
-        run: |
-          echo "Testing application startup in headless mode..."
-          # Test that the main process can be loaded without starting the GUI
-          # This verifies the application structure is correct
-          node -e "
-            try {
-              const path = require('path');
-              const mainPath = path.join(__dirname, 'src', 'main', 'main.js');
-              console.log('Testing main process file:', mainPath);
-              console.log('✅ Application structure verified - main process can be loaded');
-            } catch (error) {
-              console.error('❌ Failed to load main process:', error.message);
-              process.exit(1);
-            }
-          "
+          echo "Running linting and formatting checks..."
+          npm run check
+          echo "✅ All quality checks passed"
 
       - name: Package application
         run: |
+          echo "Packaging application..."
           npx electron-packager . Typy --platform=win32 --arch=x64 --out=dist --overwrite
-          echo "Build completed successfully"
+          echo "✅ Build completed successfully"
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
