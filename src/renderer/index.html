@@ -30,6 +30,7 @@
         margin: 0;
         padding-left: 0;
         height: 100vh; /* Restore height for proper edit area sizing */
+        position: relative; /* Add positioning context for absolutely positioned textarea */
         .preview-area {
           padding: 0;
           margin: 0;
@@ -62,6 +63,42 @@
         white-space: pre-wrap;
         overflow-x: hidden;
         word-break: break-word;
+      }
+
+      /* Edit mode container for centering */
+      .edit-container {
+        display: grid;
+        place-items: center;
+        width: 100vw;
+        height: 100vh;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Auto-sizing textarea */
+      .edit-area {
+        width: 20px;
+        min-width: 20px;
+        max-width: 100%;
+        height: 0;
+        max-height: 100vh;
+        font-size: 1.1em;
+        background: transparent;
+        border: none;
+        outline: none;
+        box-sizing: border-box;
+        resize: none;
+        font-family: "Courier New", "Monaco", "Consolas", monospace;
+        color: #222;
+        line-height: 1.6;
+        padding: 10px;
+        overflow: auto;
+        word-wrap: break-word;
+        white-space: pre-wrap;
+      }
+
+      .edit-area:focus {
+        background: transparent;
       }
       .preview-area img {
         width: 100%;
@@ -318,28 +355,6 @@
         if (isRightDragging) e.preventDefault();
       });
       document.addEventListener("keydown", window.typoraLite.handleKeydown);
-
-      // Global zoom functionality - works when mouse is over any part of the app
-      let globalFontSize = 1.1; // em, default font size
-      document.addEventListener("wheel", e => {
-        if (e.ctrlKey) {
-          e.preventDefault();
-          if (e.deltaY < 0) {
-            globalFontSize = Math.min(globalFontSize + 0.1, 3);
-          }
-          if (e.deltaY > 0) {
-            globalFontSize = Math.max(globalFontSize - 0.1, 0.5);
-          }
-
-          // Update the global font size in the editor
-          if (
-            window.typoraLite &&
-            typeof window.typoraLite.setGlobalFontSize === "function"
-          ) {
-            window.typoraLite.setGlobalFontSize(globalFontSize);
-          }
-        }
-      });
     </script>
   </body>
 </html>
