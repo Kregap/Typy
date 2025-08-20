@@ -17,7 +17,8 @@ window.typoraLite = (function () {
   let cursorHidden = true; // Start in preview mode
   let workarea;
 
-  let globalFontSize = 1.1; // em, global font size for zoom
+  let editFontSize = 1.1; // em, font size for edit mode
+  let previewFontSize = 1.1; // em, font size for preview mode
   function render() {
     workarea.innerHTML = "";
     if (!cursorHidden) {
@@ -28,7 +29,7 @@ window.typoraLite = (function () {
       const textarea = document.createElement("textarea");
       textarea.value = text;
       textarea.className = "edit-area";
-      textarea.style.fontSize = globalFontSize + "em";
+      textarea.style.fontSize = editFontSize + "em";
 
       // Auto-resize function for both width and height
       function autoResize() {
@@ -101,12 +102,13 @@ window.typoraLite = (function () {
         if (e.ctrlKey) {
           e.preventDefault();
           if (e.deltaY < 0) {
-            globalFontSize = Math.min(globalFontSize + 0.1, 3);
+            editFontSize = Math.min(editFontSize + 0.1, 3);
           }
           if (e.deltaY > 0) {
-            globalFontSize = Math.max(globalFontSize - 0.1, 0.5);
+            editFontSize = Math.max(editFontSize - 0.1, 0.5);
           }
-          textarea.style.fontSize = globalFontSize + "em";
+          textarea.style.fontSize = editFontSize + "em";
+          autoResize(); // Recalculate size after font size change
         }
       });
 
@@ -172,17 +174,17 @@ window.typoraLite = (function () {
         if (!cursorHidden)
           document.removeEventListener("mousedown", globalPreviewToEditHandler);
       }, 0);
-      div.style.fontSize = globalFontSize * 0.86 + "em";
+      div.style.fontSize = previewFontSize * 0.86 + "em";
       div.addEventListener("wheel", e => {
         if (e.ctrlKey) {
           e.preventDefault();
           if (e.deltaY < 0) {
-            globalFontSize = Math.min(globalFontSize + 0.1, 3);
+            previewFontSize = Math.min(previewFontSize + 0.1, 3);
           }
           if (e.deltaY > 0) {
-            globalFontSize = Math.max(globalFontSize - 0.1, 0.5);
+            previewFontSize = Math.max(previewFontSize - 0.1, 0.5);
           }
-          div.style.fontSize = globalFontSize * 0.86 + "em";
+          div.style.fontSize = previewFontSize * 0.86 + "em";
         }
       });
       workarea.appendChild(div);
@@ -204,7 +206,10 @@ window.typoraLite = (function () {
     render();
   }
   function setGlobalFontSize(newSize) {
-    globalFontSize = newSize;
+    // This function is kept for backward compatibility
+    // It now sets both edit and preview font sizes
+    editFontSize = newSize;
+    previewFontSize = newSize;
     render();
   }
   function showCursor() {
