@@ -21,20 +21,74 @@ window.typoraLite = (function () {
   function render() {
     workarea.innerHTML = "";
     if (!cursorHidden) {
-      // Edit mode: show textarea
+      // Edit mode: create container and textarea
+      const container = document.createElement("div");
+      container.className = "edit-container";
+
       const textarea = document.createElement("textarea");
       textarea.value = text;
       textarea.className = "edit-area";
-      textarea.style.width = "100%";
-      textarea.style.height = "100vh";
       textarea.style.fontSize = globalFontSize + "em";
-      textarea.style.background = "transparent";
-      textarea.style.border = "none";
-      textarea.style.outline = "none";
-      textarea.style.boxSizing = "border-box";
+
+      // Auto-resize function for both width and height
+      function autoResize() {
+        // Reset dimensions to measure content
+        textarea.style.width = "20px";
+        textarea.style.height = "0";
+
+        // Create temporary element to measure content
+        const temp = document.createElement("div");
+        temp.style.position = "absolute";
+        temp.style.visibility = "hidden";
+        temp.style.whiteSpace = "pre";
+        temp.style.font = window.getComputedStyle(textarea).font;
+        temp.style.padding = window.getComputedStyle(textarea).padding;
+        temp.style.boxSizing = "border-box";
+
+        // Find the longest line for width calculation
+        const lines = textarea.value.split("\n");
+        let maxWidth = 0;
+
+        lines.forEach(line => {
+          temp.textContent = line || " ";
+          document.body.appendChild(temp);
+          const lineWidth = temp.offsetWidth;
+          maxWidth = Math.max(maxWidth, lineWidth);
+          document.body.removeChild(temp);
+        });
+
+        // Calculate new dimensions with constraints (matching preview mode limits)
+        const containerWidth = window.innerWidth; // Full viewport width like preview mode
+        const newWidth = Math.max(Math.min(maxWidth + 20, containerWidth), 20); // Constrain to viewport width
+
+        // Apply width first
+        textarea.style.width = newWidth + "px";
+
+        // Now calculate height based on actual content (including wrapped text)
+        textarea.style.height = "auto";
+        const scrollHeight = textarea.scrollHeight;
+        const maxHeight = window.innerHeight; // Full viewport height like preview mode
+        const newHeight = Math.max(Math.min(scrollHeight, maxHeight), 0); // Constrain to viewport height, minimum 0
+
+        // Apply final height
+        textarea.style.height = newHeight + "px";
+      }
+
       textarea.addEventListener("input", _e => {
         text = textarea.value;
+        autoResize(); // Adjust dimensions based on content
+        // Trigger continuous updates by re-rendering preview if needed
+        if (
+          window.typoraLite &&
+          typeof window.typoraLite.updatePreview === "function"
+        ) {
+          window.typoraLite.updatePreview();
+        }
       });
+
+      // Initial resize
+      setTimeout(autoResize, 0);
+
       textarea.addEventListener("keydown", e => {
         if (e.key === "Escape") {
           cursorHidden = true;
@@ -42,6 +96,7 @@ window.typoraLite = (function () {
           e.preventDefault();
         }
       });
+
       textarea.addEventListener("wheel", e => {
         if (e.ctrlKey) {
           e.preventDefault();
@@ -54,8 +109,11 @@ window.typoraLite = (function () {
           textarea.style.fontSize = globalFontSize + "em";
         }
       });
+
+      // Add textarea to container, then container to workarea
+      container.appendChild(textarea);
+      workarea.appendChild(container);
       setTimeout(() => textarea.focus(), 0);
-      workarea.appendChild(textarea);
     } else {
       // Preview mode: show rendered markdown
       const div = document.createElement("div");
@@ -188,6 +246,12 @@ window.typoraLite = (function () {
     }
     return false;
   }
+
+  function updatePreview() {
+    // This function can be used for continuous updates if needed
+    // Currently the input event handler updates the text variable directly
+  }
+
   return {
     setWorkarea,
     render,
@@ -198,6 +262,7 @@ window.typoraLite = (function () {
     showCursor,
     hideCursor,
     handleKeydown,
-    handleMousedown
+    handleMousedown,
+    updatePreview
   };
 })();
